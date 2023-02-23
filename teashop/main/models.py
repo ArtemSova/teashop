@@ -97,3 +97,11 @@ class ProductReview(models.Model):
 
     def get_review_rating(self):
         return self.review_text
+
+class Wishlist(models.Model):
+    user=models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
+    product=models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Товар')
+
+    class Meta:
+        verbose_name = 'Желаемое'
+        verbose_name_plural='7. Желаемое'

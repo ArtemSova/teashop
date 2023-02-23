@@ -21,9 +21,17 @@ urlpatterns=[
     path('accounts/signup', views.signup, name='signup'),
     path('checkout', views.checkout, name='checkout'),
     path('save-review/<int:pid>', views.save_review, name='save_review'),
+    # Оплата
     #path('payment/', include('#')),   --------------------------------------------------------- Прикрутить оплату
     path('payment-done/', views.payment_done, name='payment_done'),
     path('payment-cancelled/', views.payment_canceled, name='payment_cancelled'),
+    # Личный кабинет
+    path('my-dashboard',views.my_dashboard, name='my_dashboard'),
+    path('my-orders',views.my_orders, name='my_orders'),
+    path('my-orders-items/<int:id>',views.my_order_items, name='my_order_items'),
+    path('add-wishlist',views.add_wishlist, name='add_wishlist'),
+    path('my-wishlist',views.my_wishlist, name='my_wishlist'),
+    path('my-reviews',views.my_reviews, name='my-reviews'),
 ]
 
 if settings.DEBUG:

@@ -11,7 +11,7 @@
 				{% for product in data %}
 				<div class="col-lg-4 col-md-6 mb-4 product-box">
 					<div class="card shadow">
-					  <a href="/product/{{product.id}}"><img src="/media/{{product.image}}" class="card-img-top" alt="{{product.title}}"></a>
+					  <a href="/product/{{product.id}}"><img width="100" src="/media/{{product.image}}" class="card-img-top" alt="{{product.title}}"></a>
 					  <div class="card-body">
 					    <h6 class="card-text"><a href="/product/{{product.id}}">{{product.title}}</a></h6>
 						<h6>&#x20BD <span class="product-price-{{product.id}}">{{product.price}}</span></h6>

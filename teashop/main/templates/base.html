@@ -47,7 +47,7 @@
 		        </a>
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 		        {% if user.is_authenticated %}
-		        	<a class="dropdown-item" href="<php echo $baseUrl; ?>/dashboard.php">Dashboard</a>
+		        	<a class="dropdown-item" href="{% url 'my_dashboard' %}">Личный кабинет</a>
 		        	<a class="dropdown-item" href="{% url 'logout' %}">Выход</a>
 	        	{% else %}
 	        		<a class="dropdown-item" href="{% url 'login' %}">Вход</a>
@@ -81,7 +81,7 @@
         </ul>
         </div>
         <div class="col-6 col-md">
-        <h5>Resources</h5>
+        <h5>Наши ссылки</h5>
         <ul class="list-unstyled text-small">
             <li><a class="text-muted" href="#">Resource</a></li>
             <li><a class="text-muted" href="#">Resource name</a></li>

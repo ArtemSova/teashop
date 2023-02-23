@@ -26,3 +26,5 @@ admin.site.register(CartOrderItems, CartOrderItemsAdmin)
 class ProductReviewAdmin(admin.ModelAdmin):
     list_display = ('user', 'product', 'review_text', 'get_review_rating')
 admin.site.register(ProductReview, ProductReviewAdmin)
+
+admin.site.register(Wishlist)

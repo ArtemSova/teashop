@@ -236,3 +236,44 @@ def save_review(request, pid):
     avg_reviews = ProductReview.objects.filter(product=product).aggregate(avg_rating=Avg('review_rating'))
 
     return JsonResponse({'bool': True, 'data': data, 'avg_reviews': avg_reviews})
+
+# Профиль
+def my_dashboard(request):
+    return render(request, 'user/dashboard.html')
+
+def my_orders(request):
+    orders = CartOrder.objects.filter(user=request.user).order_by('-id')
+    return render(request, 'user/orders.html', {'orders': orders})
+
+def my_order_items(request, id):
+    order = CartOrder.objects.get(pk=id)
+    orderitems = CartOrderItems.objects.filter(order=order).order_by('-id')
+    return render(request, 'user/order-items.html',{'orderitems':orderitems})
+
+def add_wishlist(request):
+    pid = request.GET['product']
+    product = Product.objects.get(pk=pid)
+    data = {}
+    checkw = Wishlist.objects.filter(product=product, user=request.user).count()
+    if checkw > 0:
+        data={
+            'bool':False
+        }
+    else:
+        wishlist = Wishlist.objects.create(
+            product=product,
+            user=request.user
+        )
+        data = {
+            'bool':True
+        }
+    return JsonResponse(data)
+
+def my_wishlist(request):
+    wlist = Wishlist.objects.filter(user=request.user).order_by('-id')
+    return render(request, 'user/wishlist.html', {'wlist': wlist})
+
+def my_reviews(request):
+    reviews = ProductReview.objects.filter(user=request.user).order_by('-id')
+    return render(request, 'user/reviews.html', {'reviews':reviews})
+
