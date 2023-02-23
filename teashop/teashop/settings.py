@@ -134,3 +134,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL='home'
 LOGOUT_REDIRECT_URL='login'
+
+JET_SIDE_MENU_COMPACT = True

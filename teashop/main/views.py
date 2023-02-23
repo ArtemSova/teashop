@@ -277,3 +277,21 @@ def my_reviews(request):
     reviews = ProductReview.objects.filter(user=request.user).order_by('-id')
     return render(request, 'user/reviews.html', {'reviews':reviews})
 
+def my_addressbook(request):
+    addbook = UserAddressBook.objects.filter(user=request.user).order_by('-id')
+    return render(request, 'user/addressbook.html', {'addbook':addbook})
+
+def save_address(request):
+    msg = None
+    if request.method=='POST':
+        form=AddressBookForm(request.POST)
+        if form.is_valid():
+            saveForm = form.save(commit=False)
+            saveForm.user = request.user
+            if 'status' in request.POST:
+                UserAddressBook.objects.update(status=False)
+            saveForm.save()
+            msg='Адрес сохранен'
+    form=AddressBookForm
+    return render(request, 'user/add-address.html', {'form':form, 'msg':msg})
+

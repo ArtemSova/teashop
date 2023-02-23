@@ -16,7 +16,8 @@ class ProductAdmin(admin.ModelAdmin):
 admin.site.register(Product, ProductAdmin)
 
 class CartOrderAdmin(admin.ModelAdmin):
-    list_display = ('user', 'total_amt', 'paid_status', 'order_dt')
+    list_display = ('id', 'user', 'total_amt', 'paid_status', 'order_status', 'order_dt')
+    list_editable = ('paid_status', 'order_status')
 admin.site.register(CartOrder, CartOrderAdmin)
 
 class CartOrderItemsAdmin(admin.ModelAdmin):
@@ -28,3 +29,7 @@ class ProductReviewAdmin(admin.ModelAdmin):
 admin.site.register(ProductReview, ProductReviewAdmin)
 
 admin.site.register(Wishlist)
+
+class UserAddressBookAdmin(admin.ModelAdmin):
+    list_display=('user', 'address', 'status')
+admin.site.register(UserAddressBook, UserAddressBookAdmin)
