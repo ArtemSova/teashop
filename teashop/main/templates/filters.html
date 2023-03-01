@@ -10,8 +10,9 @@
 						<p>{{minMaxPrice.price__min}}-{{minMaxPrice.price__max}}</p>
 					</li>
 					<li class="list-group-item">
-						Максимальная цена: <input type="number" value="{{minMaxPrice.price__min}}" min={{minMaxPrice.price__min}} max={{minMaxPrice.price__max}}  class="form-control" id="maxPrice" onkeyup="rangeInput.value=this.value" />
+						Максимальная цена: <input type="number" value="{{minMaxPrice.price__max}}" min={{minMaxPrice.price__min}} max={{minMaxPrice.price__max}}  class="form-control" id="maxPrice" onkeyup="rangeInput.value=this.value" />
 						<button id="priceFilterBtn"  class="btn btn-info btn-sm mt-1">Фильтровать</button>
+						<button onClick="window.location.reload();" class="btn btn-warning btn-sm mt-1">Сбросить</button>
 					</li>
 				</div>
 			</div>

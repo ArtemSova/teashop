@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'main',
     'jet.dashboard',
     'jet',
     'django.contrib.admin',
@@ -40,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +136,5 @@ LOGIN_REDIRECT_URL='home'
 LOGOUT_REDIRECT_URL='login'
 
 JET_SIDE_MENU_COMPACT = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  #Сброс пароля на email

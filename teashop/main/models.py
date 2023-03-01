@@ -97,14 +97,14 @@ class ProductReview(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Товар')
     review_text = models.TextField(verbose_name='Отзыв')
-    review_rating = models.CharField(choices=RATING, max_length=150, verbose_name='Оценка')
+    review_rating = models.IntegerField(choices=RATING, verbose_name='Оценка')
 
     class Meta:
         verbose_name = 'Рейтинг товара'
         verbose_name_plural = '07. Рейтинги товаров'
 
     def get_review_rating(self):
-        return self.review_text
+        return self.review_rating
 
 class Wishlist(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
@@ -116,9 +116,9 @@ class Wishlist(models.Model):
 
 class UserAddressBook(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE, verbose_name='Пользователь')
-    mobile = models.CharField(max_length=50, null=True, verbose_name='Телефон')
+    mobile = models.CharField(max_length=12, null=True, verbose_name='Телефон')
     address = models.TextField(verbose_name='Адрес')
-    status = models.BooleanField(default=False, verbose_name='Статус')
+    status = models.BooleanField(default=False, verbose_name='Текущий адрес')
 
     class Meta:
         verbose_name = 'Адреса'

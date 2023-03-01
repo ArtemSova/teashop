@@ -29,11 +29,17 @@ urlpatterns=[
     path('my-dashboard',views.my_dashboard, name='my_dashboard'),
     path('my-orders',views.my_orders, name='my_orders'),
     path('my-orders-items/<int:id>',views.my_order_items, name='my_order_items'),
-    path('add-wishlist',views.add_wishlist, name='add_wishlist'),
     path('my-wishlist',views.my_wishlist, name='my_wishlist'),
+    path('add-wishlist',views.add_wishlist, name='add_wishlist'),
+    path('delete-wishlist',views.delete_wishlist, name='delete_wishlist'),
     path('my-reviews',views.my_reviews, name='my-reviews'),
+    path('update-review/<int:id>',views.update_review, name='update-review'),
     path('my-addressbook',views.my_addressbook, name='my-addressbook'),
     path('add-address', views.save_address, name='add_address'),
+    path('activate-address',views.activate_address, name='activate_address'),
+    path('update-address/<int:id>',views.update_address, name='update-address'),
+    path('delete-address', views.delete_address, name='delete_address'),
+    path('edit-profile',views.edit_profile, name='edit-profile'),
 ]
 
 if settings.DEBUG:

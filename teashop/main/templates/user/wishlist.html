@@ -20,11 +20,16 @@
 					<tbody>
 						{% for wl in wlist %}
 						<tr>
-							<td><a href="/product/{{wl.product.id}}">{{wl.product.title}}</a></td>
-							<td>
+							<td class="table-light">
+								<a href="/product/{{wl.product.id}}">{{wl.product.title}}</a>
+								<button data-wishlist="{{wl.id}}" class="btn btn-sm btn-danger float-right delete-wishlist"><i class="fa fa-trash"></i></button>
+							</td>
+							<td class="table-light">
 								<img width="100" src="/media/{{wl.product.image}}" alt="{{wl.product.title}}">
 							</td>
-							<td>{{wl.product.price}}</td>
+							<td class="table-light">
+								{{wl.product.price}}
+							</td>
 						</tr>
 						{% endfor %}
 					</tbody>

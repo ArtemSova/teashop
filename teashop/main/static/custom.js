@@ -99,7 +99,7 @@ $(document).ready(function(){
 	});
 	// End
 
-	// Удалить товар из карзины
+	// Удалить товар из корзины
 	$(document).on('click','.delete-item',function(){
 		var _pId=$(this).attr('data-item');
 		var _vm=$(this);
@@ -145,34 +145,57 @@ $(document).ready(function(){
 			}
 		});
 		// End
+	});
 
-	// Update item from cart
-	$(document).on('click','.update-item',function(){
-		var _pId=$(this).attr('data-item');
-		var _pQty=$(".product-qty-"+_pId).val();
+	// Выброр адреса
+	$(document).on('click','.activate-address',function(){
+		var _aId=$(this).attr('data-address');
 		var _vm=$(this);
 		// Ajax
 		$.ajax({
-			url:'/update-cart',
+			url:'/activate-address',
 			data:{
-				'id':_pId,
-				'qty':_pQty
+				'id':_aId,
 			},
 			dataType:'json',
-			beforeSend:function(){
-				_vm.attr('disabled',true);
+			beforeSend:function (){
+				_vm.attr('disabled', false)
 			},
 			success:function(res){
-				// $(".cart-list").text(res.totalitems);
-				_vm.attr('disabled',false);
-				$("#cartList").html(res.data);
+				if(res.bool==true){
+					$(".address").removeClass('shadow border-secondary');
+					$(".address"+_aId).addClass('shadow border-secondary');
+
+					$(".check").hide();
+					$(".actbtn").show();
+
+					$(".check"+_aId).show();
+					$(".btn"+_aId).hide();
+				}
 			}
 		});
 		// End
-		});
 	});
 
-	// Product Review Save
+	// Удаление адреса
+	$(document).on('click','.delete-address',function(){
+		var _aId=$(this).attr('data-address');
+		var _vm=$(this).attr('disabled', true);
+		// Ajax
+		$.ajax({
+			url:'/delete-address',
+			data:{
+				'id':_aId,
+			},
+			dataType:'json',
+			success:function(){
+				_vm.closest('.card').parent().remove();  //Удаляет со страницы удаленный объект
+			}
+		});
+		// End
+	});
+
+	// Сохранить отзыв
 	$("#addForm").submit(function(e){
 		$.ajax({
 			data:$(this).serialize(),
@@ -214,7 +237,7 @@ $(document).ready(function(){
 	});
 	// Product Review Save end
 
-	// Желаемое
+	// Добавить в желаемое
 	$(document).on('click', ".add-wishlist", function(){
 		var _pid=$(this).attr('data-product');
 		var _vm=$(this);
@@ -233,6 +256,23 @@ $(document).ready(function(){
 		});
 		// EndAjax
 	});
-	// Create "delete-wishlist" button
+
+	// Удаление желаемое
+	$(document).on('click','.delete-wishlist',function(){
+		var _wId=$(this).attr('data-wishlist');
+		var _vm=$(this).attr('disabled', true);
+		// Ajax
+		$.ajax({
+			url:'/delete-wishlist',
+			data:{
+				'id':_wId,
+			},
+			dataType:'json',
+			success:function(){
+				_vm.closest('.table-light').parent().remove();
+			}
+		});
+		// End
+	});
 
 });
